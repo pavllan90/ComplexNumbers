@@ -68,6 +68,6 @@ return t;
 }
 void Comp::show()
 {
-cout<< re << " ";
-cout<< im <<endl;
+cout<< re << " + i*(";
+cout<< im <<")"<<endl;
 }
