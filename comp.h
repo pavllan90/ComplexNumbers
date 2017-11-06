@@ -4,10 +4,12 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
+#include "numbers.h"
+#include "quaternion.h"
 
 using namespace std;
 
-class Comp
+class Comp : public Numbers
 {
 public:
 
@@ -18,13 +20,13 @@ Comp(const Comp &c);
 ~Comp ();
 
 
-Comp sum (const Comp &c);
-Comp sub (const Comp &c);
-Comp mult (const Comp &c);
-Comp div (const Comp &c);
-void show();
+virtual Numbers* operator+ (Numbers *c);
+virtual Numbers* operator- (Numbers *c);
+virtual Numbers* operator* (Numbers *c);
+virtual Numbers* operator/ (Numbers *c);
+virtual void show();
+virtual int getType();
 
-double re, im;
 };
 
 #endif // COMP_H

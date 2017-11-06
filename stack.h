@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QDataStream>
 #include "comp.h"
+#include "quaternion.h"
 
 enum Operations
 {
@@ -17,14 +18,14 @@ public:
     {
         Node(){next=NULL;}
         Node *next;
-        Comp data;
+        Numbers *data;
         Operations sign;
     };
     Stack();
     Stack(const Stack &copy);
-    Comp& get_First();
-    void push(Comp a, QString _sign);
-    Comp pop();
+    Numbers* get_First();
+    void push(Numbers *a, QString _sign);
+    Numbers* pop();
     int size();
     bool is_Empty();
     void show();
@@ -33,9 +34,10 @@ public:
     QString op_to_str(Node *a);
     Operations str_to_op(QString a);
     QString get_string();
-    Comp result();
-private:
+    Numbers *result();
     Node *first;
+private:
+
     int stack_size;
     QString sign_to_string(Node* a);
 
