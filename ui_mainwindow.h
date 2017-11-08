@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon 6. Nov 10:32:40 2017
+** Created: Wed 8. Nov 12:53:15 2017
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -44,6 +44,7 @@ public:
     QLabel *label;
     QLineEdit *lineEdit;
     QLabel *label_2;
+    QPushButton *pushButton_26;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton_19;
@@ -125,6 +126,11 @@ public:
         label_2->setFont(font);
 
         verticalLayout->addWidget(label_2);
+
+        pushButton_26 = new QPushButton(tab);
+        pushButton_26->setObjectName(QString::fromUtf8("pushButton_26"));
+
+        verticalLayout->addWidget(pushButton_26);
 
 
         verticalLayout_3->addLayout(verticalLayout);
@@ -366,7 +372,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -377,6 +383,7 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "Enter:", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("MainWindow", "=", 0, QApplication::UnicodeUTF8));
+        pushButton_26->setText(QApplication::translate("MainWindow", "Clear", 0, QApplication::UnicodeUTF8));
         pushButton_19->setText(QApplication::translate("MainWindow", "(", 0, QApplication::UnicodeUTF8));
         pushButton_20->setText(QApplication::translate("MainWindow", ")", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("MainWindow", "0", 0, QApplication::UnicodeUTF8));

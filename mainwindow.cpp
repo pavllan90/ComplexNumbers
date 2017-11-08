@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->pushButton_23, SIGNAL(clicked()), this, SLOT(show_s()));
     QObject::connect(ui->pushButton_24, SIGNAL(clicked()), this, SLOT(save()));
     QObject::connect(ui->pushButton_25, SIGNAL(clicked()), this, SLOT(load()));
+    QObject::connect(ui->pushButton_26, SIGNAL(clicked()), this, SLOT(clean()));
 }
 
 void MainWindow::size()
@@ -196,11 +197,16 @@ void MainWindow::count()
 {
     substrs = ui->lineEdit->text();
     QStringList list = substrs.split(")");
-    qDebug("%s", list.at(1).toLatin1().data());
+   // for(int i = 0; i<list.size();i++)  printf(" %s ", list.at(i).toLatin1().data());
+   // qDebug("%s", list.at(1).toLatin1().data());
+    QRegExp quat("[+|-|*|/]?[-]?[(]?[0-9]*[.,]?[0-9]+[+|-][0-9]*[.,]?[0-9]+[i][+|-][0-9]*[.,]?[0-9]+[j][+|-][0-9]*[.,]?[0-9]+[k][)]?");
+    QRegExp comp("[+|-|*|/]?[-]?[(]?[0-9]*[.,]?[0-9]+[+|-][0-9]*[.,]?[0-9]+[i][)]?");
+    if(quat.exactMatch(substrs)) qDebug("Yes");
+    else qDebug("No");
     Stack temp;
     for(int i = 0; i<list.size(); i++)
     {
-        if(!list.at(i).contains("j")&&!list.at(i).contains("k")&&list.at(i).length()>2)
+        if(comp.exactMatch(list.at(i))&&list.at(i).length()>2)
         {
             bool f = true;
             int j = 1;
@@ -214,16 +220,13 @@ void MainWindow::count()
             if(list.at(i).at(j)=='-') im1 = "-";
             else im1 = "";
              j+=1;
-            //QString mid_sign = "-";
-            //j+=1;
             for(;j<list.at(i).size()&& (list.at(i).at(j).isDigit()||list.at(i).at(j)=='.'||list.at(i).at(j)=='-'); j++) im1+=list.at(i).at(j);
-           // re.toDouble(&f);
             if(i<list.size()-1&&list.at(i+1).size()>=2)
               temp.push(new Comp(re.toDouble(), im1.toDouble()), QString(list.at(i+1).at(0)));
             else
               temp.push(new Comp(re.toDouble(), im1.toDouble()), "+");
         }
-        else if(list.at(i).length()>2)
+        else if((quat.exactMatch(list.at(i)))&&list.at(i).length()>2)
         {
             int j = 1;
             while(j<list.at(i).size()&&!list.at(i).at(j).isDigit()&&list.at(i).at(j)!='-') j+=1;
@@ -256,12 +259,21 @@ void MainWindow::count()
             else
               temp.push(new Quaternion(re.toDouble(), im1.toDouble(), im2.toDouble(), im3.toDouble()), "+");
         }
+
     }
 
     Stack::Node* a = temp.first;
     while (a) stack.push(a->data, temp.op_to_str(a)), a = a->next;
     stack.show();
     ui->label_2->setText("="+stack.get_string());
+}
+
+void MainWindow::clean()
+{
+    while(!stack.is_Empty()) stack.pop();
+    ui->lineEdit->clear();
+    ui->label_2->setText("=");
+
 }
 
 MainWindow::~MainWindow()

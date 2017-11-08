@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <stack.h>
+#include <QRegExp>
 
 namespace Ui {
 class MainWindow;
@@ -46,6 +47,7 @@ private slots:
     void is_empty();
     void save();
     void load();
+    void clean();
 };
 
 #endif // MAINWINDOW_H
