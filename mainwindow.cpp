@@ -196,6 +196,7 @@ void MainWindow::enter_right()
 void MainWindow::count()
 {
     substrs = ui->lineEdit->text();
+    clean();
     QStringList list = substrs.split(")");
    // for(int i = 0; i<list.size();i++)  printf(" %s ", list.at(i).toLatin1().data());
    // qDebug("%s", list.at(1).toLatin1().data());

@@ -109,12 +109,14 @@ QString Stack::get_string()
     {
 
         res+="("+QString::number(temp->data->re);
-        res+= temp->data->im1 >= 0 ? "+i"+QString::number(temp->data->im1) : "-i"+QString::number(-(temp->data->im1));
-
+        res+= temp->data->im1 >= 0 ? "+"+QString::number(temp->data->im1) : "-"+QString::number(-(temp->data->im1));
+        res+="i";
         if(temp->data->getType()==1)
         {
-            res+= dynamic_cast<Quaternion*>(temp->data)->im2 >= 0 ? "+j"+QString::number(dynamic_cast<Quaternion*>(temp->data)->im2) : "-j"+QString::number(-(dynamic_cast<Quaternion*>(temp->data)->im2));
-            res+= dynamic_cast<Quaternion*>(temp->data)->im3 >= 0 ? "+k"+QString::number(dynamic_cast<Quaternion*>(temp->data)->im3) : "-k"+QString::number(-(dynamic_cast<Quaternion*>(temp->data)->im3));
+            res+= dynamic_cast<Quaternion*>(temp->data)->im2 >= 0 ? "+"+QString::number(dynamic_cast<Quaternion*>(temp->data)->im2) : "-"+QString::number(-(dynamic_cast<Quaternion*>(temp->data)->im2));
+            res+="j";
+            res+= dynamic_cast<Quaternion*>(temp->data)->im3 >= 0 ? "+"+QString::number(dynamic_cast<Quaternion*>(temp->data)->im3) : "-"+QString::number(-(dynamic_cast<Quaternion*>(temp->data)->im3));
+            res+="k";
         }
         res+=")";
         if(temp->next)
@@ -124,11 +126,14 @@ QString Stack::get_string()
         else
         {
             res+=" = "+QString::number(result()->re);
-            res+=result()->im1>=0 ? "+i" + QString::number(result()->im1) : "-i" + QString::number(-result()->im1);
+            res+=result()->im1>=0 ? "+" + QString::number(result()->im1) : "-" + QString::number(-result()->im1);
+            res+="i";
             if(result()->getType() == 1)
             {
-                res+=dynamic_cast<Quaternion*>(result())->im2>=0 ? "+j" + QString::number(dynamic_cast<Quaternion*>(result())->im2) : "-j" + QString::number(-dynamic_cast<Quaternion*>(result())->im2);
-                res+=dynamic_cast<Quaternion*>(result())->im3>=0 ? "+k" + QString::number(dynamic_cast<Quaternion*>(result())->im3) : "-k" + QString::number(-dynamic_cast<Quaternion*>(result())->im3);
+                res+=dynamic_cast<Quaternion*>(result())->im2>=0 ? "+" + QString::number(dynamic_cast<Quaternion*>(result())->im2) : "-" + QString::number(-dynamic_cast<Quaternion*>(result())->im2);
+                res+="j";
+                res+=dynamic_cast<Quaternion*>(result())->im3>=0 ? "+" + QString::number(dynamic_cast<Quaternion*>(result())->im3) : "-" + QString::number(-dynamic_cast<Quaternion*>(result())->im3);
+                res+="k";
             }
         }
     }
@@ -157,7 +162,18 @@ bool Stack::is_Empty()
 void Stack::push(Numbers *a, QString _sign)
 {
     Node *temp = new Node;
-    temp->data = a;
+    if(a->getType()==0)
+    {
+        Comp *cp_a = new Comp;
+        *cp_a = *dynamic_cast<Comp*>(a);
+        temp->data = cp_a;
+    }
+    else
+    {
+        Quaternion *cp_a = new Quaternion;
+        *cp_a = *dynamic_cast<Quaternion*>(a);
+        temp->data = cp_a;
+    }
     temp->sign = str_to_op(_sign);
     stack_size+=1;
     if(!first) first = temp;
@@ -209,8 +225,6 @@ Numbers *Stack::result()
     temp = mult_div.first;
     while(temp)
     {
-
-
         switch (temp->sign)
         {
         case pl:

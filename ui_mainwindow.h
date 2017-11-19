@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed 8. Nov 12:53:15 2017
+** Created: Thu 9. Nov 14:19:17 2017
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -23,9 +23,9 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
 #include <QtGui/QPushButton>
+#include <QtGui/QSpacerItem>
 #include <QtGui/QStatusBar>
 #include <QtGui/QTabWidget>
-#include <QtGui/QTextEdit>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
 
@@ -70,19 +70,20 @@ public:
     QPushButton *pushButton_18;
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_6;
-    QHBoxLayout *horizontalLayout_3;
+    QGridLayout *gridLayout_2;
     QPushButton *pushButton_21;
     QFrame *line;
     QPushButton *pushButton_22;
     QFrame *line_2;
     QPushButton *pushButton_23;
-    QLabel *label_3;
+    QSpacerItem *verticalSpacer;
     QVBoxLayout *verticalLayout_5;
+    QLabel *label_3;
     QLineEdit *lineEdit_2;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pushButton_25;
     QPushButton *pushButton_24;
-    QTextEdit *textEdit;
+    QSpacerItem *verticalSpacer_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -90,7 +91,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(319, 506);
+        MainWindow->resize(386, 537);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout_4 = new QVBoxLayout(centralwidget);
@@ -261,50 +262,59 @@ public:
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         verticalLayout_6 = new QVBoxLayout(tab_2);
         verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         pushButton_21 = new QPushButton(tab_2);
         pushButton_21->setObjectName(QString::fromUtf8("pushButton_21"));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(100);
+        sizePolicy1.setVerticalStretch(100);
+        sizePolicy1.setHeightForWidth(pushButton_21->sizePolicy().hasHeightForWidth());
+        pushButton_21->setSizePolicy(sizePolicy1);
         pushButton_21->setFlat(true);
 
-        horizontalLayout_3->addWidget(pushButton_21);
+        gridLayout_2->addWidget(pushButton_21, 0, 0, 1, 1);
 
         line = new QFrame(tab_2);
         line->setObjectName(QString::fromUtf8("line"));
         line->setFrameShape(QFrame::VLine);
         line->setFrameShadow(QFrame::Sunken);
 
-        horizontalLayout_3->addWidget(line);
+        gridLayout_2->addWidget(line, 0, 1, 1, 1);
 
         pushButton_22 = new QPushButton(tab_2);
         pushButton_22->setObjectName(QString::fromUtf8("pushButton_22"));
         pushButton_22->setFlat(true);
 
-        horizontalLayout_3->addWidget(pushButton_22);
+        gridLayout_2->addWidget(pushButton_22, 0, 2, 1, 1);
 
         line_2 = new QFrame(tab_2);
         line_2->setObjectName(QString::fromUtf8("line_2"));
         line_2->setFrameShape(QFrame::VLine);
         line_2->setFrameShadow(QFrame::Sunken);
 
-        horizontalLayout_3->addWidget(line_2);
+        gridLayout_2->addWidget(line_2, 0, 3, 1, 1);
 
         pushButton_23 = new QPushButton(tab_2);
         pushButton_23->setObjectName(QString::fromUtf8("pushButton_23"));
         pushButton_23->setFlat(true);
 
-        horizontalLayout_3->addWidget(pushButton_23);
+        gridLayout_2->addWidget(pushButton_23, 0, 4, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_2->addItem(verticalSpacer, 1, 0, 1, 1);
 
 
-        verticalLayout_6->addLayout(horizontalLayout_3);
-
-        label_3 = new QLabel(tab_2);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-
-        verticalLayout_6->addWidget(label_3);
+        verticalLayout_6->addLayout(gridLayout_2);
 
         verticalLayout_5 = new QVBoxLayout();
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
+        label_3 = new QLabel(tab_2);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        verticalLayout_5->addWidget(label_3);
+
         lineEdit_2 = new QLineEdit(tab_2);
         lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
 
@@ -328,10 +338,9 @@ public:
 
         verticalLayout_6->addLayout(verticalLayout_5);
 
-        textEdit = new QTextEdit(tab_2);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_6->addWidget(textEdit);
+        verticalLayout_6->addItem(verticalSpacer_2);
 
         tabWidget->addTab(tab_2, QString());
 
@@ -364,7 +373,7 @@ public:
         tabWidget->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 319, 25));
+        menubar->setGeometry(QRect(0, 0, 386, 25));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -408,7 +417,7 @@ public:
         pushButton_21->setText(QApplication::translate("MainWindow", "Size", 0, QApplication::UnicodeUTF8));
         pushButton_22->setText(QApplication::translate("MainWindow", "Is Empty?", 0, QApplication::UnicodeUTF8));
         pushButton_23->setText(QApplication::translate("MainWindow", "Show", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QString());
+        label_3->setText(QApplication::translate("MainWindow", "Enter file name:", 0, QApplication::UnicodeUTF8));
         pushButton_25->setText(QApplication::translate("MainWindow", "Load", 0, QApplication::UnicodeUTF8));
         pushButton_24->setText(QApplication::translate("MainWindow", "Save", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Container:", 0, QApplication::UnicodeUTF8));

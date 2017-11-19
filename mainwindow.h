@@ -17,7 +17,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     QString substrs;
-    
 private:
     Ui::MainWindow *ui;
     Stack stack;
